@@ -1,12 +1,12 @@
-// Setup EPICOR.IMR.DataSourceContent name space
-EPICOR.namespace('EPICOR.IMR.StatusReport.Model');
+// Setup comp.proj.DataSourceContent name space
+comp.namespace('comp.proj.StatusReport.Model');
 
-EPICOR.IMR.StatusReport.View = function() {
+comp.proj.StatusReport.View = function() {
     "use strict";
-    EPICOR.IMR.StatusReport.View.count = ++EPICOR.IMR.StatusReport.View.count || 0;
+    comp.proj.StatusReport.View.count = ++comp.proj.StatusReport.View.count || 0;
     // Guard against this object not being invoked with the "new" operator
-    if (!(this instanceof EPICOR.IMR.StatusReport.View)) {
-        return new EPICOR.IMR.StatusReport.View();
+    if (!(this instanceof comp.proj.StatusReport.View)) {
+        return new comp.proj.StatusReport.View();
     }
 
     var publicInterface,
@@ -39,7 +39,7 @@ EPICOR.IMR.StatusReport.View = function() {
         id,
         base_url = location.protocol + '//' + location.host;
     // Instance ID based on current static count
-    id = "DSC_" + EPICOR.IMR.StatusReport.View.count;
+    id = "DSC_" + comp.proj.StatusReport.View.count;
     /**
      *
      */
@@ -162,14 +162,11 @@ EPICOR.IMR.StatusReport.View = function() {
         a.download = 'export.tab';
         $('#status_report_grid_' + moduleId + '_toppager_left').append(a);
         a.click();
-        //  dataFilesGrid.jqGrid('navButtonAdd', '#status_report_grid_'+moduleId+'_toppager_left', { caption: '', buttonicon: 'ui-icon-disk', title: 'Export'});
-        //  $(".ui-icon-disk").on('click', function() {
-        //	   a();
-        //	});
+      
     }
 
     function taskStatusFormatter(value, options, row) {
-        var imgElement = (value === 'null') ? '' : '<img src="/epicor/shared/images/flags/flag_' + value.toLowerCase() + '_16x16.png"></img>';
+        var imgElement = (value === 'null') ? '' : '<img src="/comp/shared/images/flags/flag_' + value.toLowerCase() + '_16x16.png"></img>';
 
         return '<span class="flag-icon">' + imgElement + '</span>';
     }
@@ -216,11 +213,11 @@ EPICOR.IMR.StatusReport.View = function() {
          *
          */
     function fileActionsFormatter(val, options, row) {
-        return '<span class="file-options-icon" title="View Data Source Menu" style="cursor:pointer;" datarow="' + options.rowId + '"><img src="/epicor/shared/images/menu_16x16.png" ></span>';
+        return '<span class="file-options-icon" title="View Data Source Menu" style="cursor:pointer;" datarow="' + options.rowId + '"><img src="/comp/shared/images/menu_16x16.png" ></span>';
     }
 
     function formatDataSourceIcon(val, options, row) {
-        return '<span class="file-options-icon" style="cursor:pointer;" datarow="' + options.rowId + '"><img src="/epicor/shared/images/menu.png" ></span>';
+        return '<span class="file-options-icon" style="cursor:pointer;" datarow="' + options.rowId + '"><img src="/comp/shared/images/menu.png" ></span>';
     }
 
     function formatRowColumns(rowId, rowData, rowFullData) {
@@ -469,17 +466,7 @@ EPICOR.IMR.StatusReport.View = function() {
                 }
             });
 
-            /*		search: function() {
-            		    $(publicInterface).trigger(config.CFG.SUPPLIER_GRID_AUTOCOMPLETE_EVENT, {
-            			field: config.CFG.SUPPLIER_FIELD,
-            			value: $("#" +rowId+"_supplierName").val(),
-            			row: rowId
-            		    });}
-            	    },
-            	    {
-            		source: []
-            	    }
-            	    ); */
+        
         }
         if (cellName === 'description') {
             var l_rowdata = dataFilesGrid.getRowData(rowId);
@@ -720,7 +707,7 @@ EPICOR.IMR.StatusReport.View = function() {
             .datepicker({
                 showAnim: 'scale',
                 showOn: "button",
-                buttonImage: "/epicor/shared/images/calendar.png",
+                buttonImage: "/comp/shared/images/calendar.png",
                 buttonImageOnly: true
             });
 
@@ -798,9 +785,9 @@ EPICOR.IMR.StatusReport.View = function() {
 
             container = $('<div>');
             if (errorInd === '1') {
-                dialog = new EPICOR.IMR.DialogFactory.factory(EPICOR.IMR.DialogFactory.BasicType);
+                dialog = new comp.proj.DialogFactory.factory(comp.proj.DialogFactory.BasicType);
             } else {
-                dialog = new EPICOR.IMR.DialogFactory.factory(EPICOR.IMR.DialogFactory.OkCancelType);
+                dialog = new comp.proj.DialogFactory.factory(comp.proj.DialogFactory.OkCancelType);
             }
             dialog.setTitle(title);
             dialog.setContent($('<img class="' + config.CSS.QUESTION_ICON_CLASS + '" src="' + config.URL.QUESTION_ICON + '"><div class="' + config.CSS.DIALOG_MESSAGE + '">' + msg + errMsg + '</p></div>'));
@@ -883,11 +870,7 @@ EPICOR.IMR.StatusReport.View = function() {
             .val(p_page);
 
         //center display
-        //    sp_1_status_report_grid_DSC_0_toppager
-        //    sp_1_status_report_pager_DSC_1
-        // var sp1="sp_1_status_report_pager_"+id;
-        // var sp2="sp_1_status_report_toppager_"+id;
-        jQuery('span[id="sp_1_status_report_pager_' + id + '"]').html(grid_page_totals[p_name]);
+         jQuery('span[id="sp_1_status_report_pager_' + id + '"]').html(grid_page_totals[p_name]);
         jQuery('span[id="sp_1_status_report_toppager_' + id + '"]').html(grid_page_totals[p_name]);
 
     }
@@ -1002,7 +985,6 @@ EPICOR.IMR.StatusReport.View = function() {
             roles = null;
             token = null;
             appId = null;
-            //	    dataFilesGrid.jqGrid( 'GridDestroy' );
         },
         /**
          *
@@ -1017,9 +999,6 @@ EPICOR.IMR.StatusReport.View = function() {
         setSubmissionTypeDropDownData: function(data) {
             //    dataFilesGrid.jqGrid('setColProp', config.CFG.SUBMISSION_TYPE_CELL, {editoptions: {value: data}});
         },
-        /**
-         *
-         */
         /**
          *
          */
@@ -1076,14 +1055,10 @@ EPICOR.IMR.StatusReport.View = function() {
                 buttons,
                 module;
             localStorage.setItem('ref', '1');
-            dialog = new EPICOR.IMR.DialogFactory.factory(EPICOR.IMR.DialogFactory.CustomType);
-            module = new EPICOR.IMR.ContentUploadUtility(token, appId, {}, []); // XXX no options no roles
+            dialog = new comp.proj.DialogFactory.factory(comp.proj.DialogFactory.CustomType);
+            module = new comp.proj.ContentUploadUtility(token, appId, {}, []); // XXX no options no roles
             buttons = {
-                //    Close: function() {
-                //        dialog.trigger("close");
-                //        dialog.dialog("close");
-                //     },
-                Upload: function() {
+                   Upload: function() {
                     dialog.trigger("upload");
                 }
             };
@@ -1115,8 +1090,8 @@ EPICOR.IMR.StatusReport.View = function() {
                 l_refresh,
                 buttons,
                 module;
-            dialog = new EPICOR.IMR.DialogFactory.factory(EPICOR.IMR.DialogFactory.DSCType);
-            module = new EPICOR.IMR.DataSourceContent(token, appId, '', userName, roles);
+            dialog = new comp.proj.DialogFactory.factory(comp.proj.DialogFactory.DSCType);
+            module = new comp.proj.DataSourceContent(token, appId, '', userName, roles);
             dialog.setContent(module.getContent());
             dialog.setTitle(module.name);
             promise = module.showDataSourceContent(dataSourceId);
@@ -1140,8 +1115,8 @@ EPICOR.IMR.StatusReport.View = function() {
                 promise;
 
             container = $('<div>');
-            dialog = new EPICOR.IMR.DialogFactory.factory(EPICOR.IMR.DialogFactory.CustomType);
-            module = new EPICOR.IMR.FileNotes(token, appId, {}, []); // XXX no options no roles
+            dialog = new comp.proj.DialogFactory.factory(comp.proj.DialogFactory.CustomType);
+            module = new comp.proj.FileNotes(token, appId, {}, []); // XXX no options no roles
 
             dialog.setContent(module.getContent());
             dialog.setTitle(module.name);
@@ -1168,8 +1143,8 @@ EPICOR.IMR.StatusReport.View = function() {
             var dialog,
                 module,
                 promise;
-            dialog = new EPICOR.IMR.DialogFactory.factory(EPICOR.IMR.DialogFactory.CustomType);
-            module = new EPICOR.IMR.FileProperties(token, appId, {}, []); //  no options no roles
+            dialog = new comp.proj.DialogFactory.factory(comp.proj.DialogFactory.CustomType);
+            module = new comp.proj.FileProperties(token, appId, {}, []); //  no options no roles
 
             promise = module.getFileProperties(contentId, dataSourceId);
             dialog.setContent(module.getContent());
@@ -1191,8 +1166,8 @@ EPICOR.IMR.StatusReport.View = function() {
             var dialog,
                 module,
                 promise;
-            dialog = new EPICOR.IMR.DialogFactory.factory(EPICOR.IMR.DialogFactory.CustomType);
-            module = new EPICOR.IMR.FileInformation(token, appId, {}, []); // XXX no options no roles
+            dialog = new comp.proj.DialogFactory.factory(comp.proj.DialogFactory.CustomType);
+            module = new comp.proj.FileInformation(token, appId, {}, []); // XXX no options no roles
 
             promise = module.showFileInformation(contentId);
             dialog.setContent(module.getContent());
@@ -1218,7 +1193,7 @@ EPICOR.IMR.StatusReport.View = function() {
             var dialog,
                 deferred = $.Deferred();
 
-            dialog = new EPICOR.IMR.DialogFactory.factory(EPICOR.IMR.DialogFactory.ModalType);
+            dialog = new comp.proj.DialogFactory.factory(comp.proj.DialogFactory.ModalType);
             if (title) {
                 dialog.setTitle(title);
             } else {
